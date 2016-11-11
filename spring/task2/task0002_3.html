@@ -1,0 +1,168 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#imgBoxes{
+	width:512px;
+	height:342px;
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+}
+#list{
+	position:absolute;
+	width:1536px;
+	height:342px;
+	left:0px;
+}
+#list img{
+	width:512px;
+	height:342px;
+	float:left;
+}
+#nav ul{
+	position:absolute;
+	bottom:30px;
+	width:100px;
+	left:0;
+	right:0;
+	margin:0 auto;
+	padding:0;
+	list-style:none;
+	z-index:2;
+}
+#nav ul li{
+	display:inline-block;
+	width:10px;
+	height:10px;
+	border:3px solid #000;
+	border-radius:100%;
+	margin:0 5px;
+}
+#nav ul li:hover{
+	border-color:#fff;
+}
+.active{
+	background-color:#000;
+}
+#pre,#next{
+	text-decoration:none;
+	display:block;
+	position:absolute;
+	top:0;
+	bottom:0;
+	margin:auto 0;
+	height:30px;
+	color:#FFFFFF;
+	font-size:24px;
+} 
+#pre{
+	left:10px;
+}
+#next{
+	right:10px;
+}
+</style>
+</head>
+<body>
+<div id="imgBoxes">
+	<div id="list" style="left:0px;">
+		<img src="img/9d7b9098beb9beddc1a55c97a328b5c3.jpg"/>
+		<img src="img/8afec919301a8c7b1412c8e09c3cb2c2.jpg"/>
+		<img src="img/002496439c61ab970816aa3a617eb369.jpg"/>
+	</div>
+	<div id="nav">
+	<ul>
+		<li index="1" class="active"></li>
+		<li index="2"></li>
+		<li index="3"></li>
+	</ul>
+	<a href="javascript:;" id="pre"><b>&lt;</b></a>
+	<a href="javascript:;" id="next"><b>&gt;</b></a>
+	</div>
+</div>
+<script type="text/javascript">
+window.onload=function(){
+	var imgBoxes=document.getElementById('imgBoxes');			
+	var list=document.getElementById('list');
+	var pre=document.getElementById('pre');
+	var next=document.getElementById('next');
+	var btnparent=document.getElementById('nav').getElementsByTagName('ul')[0];
+	var btn=document.getElementById('nav').getElementsByTagName('li');
+	var index=1;
+	var timer;
+	
+	/*btnparent.onclick=function(event){
+		var clickIndex=parseInt(event.target.getAttribute('index'));//这里怎么改 用事件委托的话；
+			var offset=512*(index-clickIndex);
+			animate(offset);
+			index=clickIndex;
+			btnShow();
+	}*/
+	for(var i=0;i<btn.length;i++){
+	(function(i){
+		btn[i].onclick = function(){
+		console.log(i);
+			var clickIndex=parseInt(this.getAttribute('index'));
+			var offset=512*(index-clickIndex);
+			animate(offset);
+			index=clickIndex;
+			btnShow();
+		}
+		})(i);
+	}
+	pre.onclick = function() {
+		index-=1;
+		if(index<1)
+			index=3;
+		btnShow();
+		animate(512);
+	}
+	next.onclick = function() {  
+		index+=1;
+		if(index>3)
+			index=1;
+		btnShow();
+		animate(-512);
+	}
+	play();
+	imgBoxes.onmouseover=function(){
+		stop();
+	}
+	imgBoxes.onmouseout=function(){
+		play();
+	}
+function btnShow(){
+	for(var i=0;i<btn.length;i++){
+		if(btn[i].className="active")
+			btn[i].className="";
+	}
+	btn[index-1].className="active";
+}
+
+function animate(offset){
+	var newLeft = parseInt(list.style.left) + offset;
+	list.style.left=newLeft+'px';
+	if(newLeft<-1024){
+		list.style.left=0+'px';
+	}
+	if(newLeft>0)
+	{
+		list.style.left=-1024+'px';
+	}
+}
+
+function play(){
+	timer=setInterval(function(){
+		next.onclick();
+	},2000)
+}
+
+function stop(){
+	clearInterval(timer);
+}
+}
+</script>
+</body>
+</html>
