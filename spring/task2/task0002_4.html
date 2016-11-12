@@ -1,0 +1,198 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+.nav{
+	margin-top:20px;
+	width:100%;
+	min-width:800px;
+	height:50px;
+}
+.nav ul{
+	float:right;
+}
+.nav ul:hover{
+	cursor:default;
+}
+.nav ul li{
+	display:inline-block;
+	margin:5px;
+}
+.nav ul li a{
+	color:#222;
+	font-size:13px;
+}
+.nav ul li a:hover{
+	color:#0033CC;
+}
+.contain{
+	width:800px;
+	margin:0 auto;;
+}
+.wrap{
+	width:600px;
+	margin:0 100px;
+}
+.baidu_logo{
+	display:block;
+	width:200px;
+	height:80px;
+	margin:0 auto;
+}
+#message{
+	width:520px;
+	height:30px;
+}
+#search{
+	width:80px;
+	height:30px;
+	background-color:#0099FF;
+	color:#fff;
+	border:#0099FF;
+}
+#info{
+	border:1px solid #999;
+	text-indent:20px;
+	border-top:0;
+}
+#info p{
+	line-height:25px;
+	color:#000;
+}
+
+.active{
+	background-color:#999;
+}
+</style>
+</head>
+<body>
+<div class="nav">
+	<ul>
+		<li><a href="#">糯米</a></li>
+		<li><a href="#">新闻</a></li>
+		<li><a href="#">hao123</a></li>
+		<li><a href="#">地图</a></li>
+		<li><a href="#">视频</a></li>
+		<li><a href="#">贴吧</a></li>
+		<li><a href="#">登陆</a></li>
+		<li><a href="#">设置</a></li>
+		<li><a href="#">更多产品</a></li>
+	</ul>
+</div>
+<div class="contain">
+	<div class="wrap">
+	<img src="img/bd_logo1.png" class="baidu_logo"/></br>
+	<input type="text" id="message"/><button id="search">百度一下</button>
+	<div id="info" style="display:none;">
+	</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var message=document.getElementById('message');
+	var btn=document.getElementById('search');
+	var info=document.getElementById('info');
+	var index=0;
+//文本输入事件监听
+document.oninput=function(){
+	var request=new XMLHttpRequest();
+	request.open("GET","server.php?title="+message.value);
+	request.send();
+	request.onreadystatechange = function(){
+		if(request.readyState===4){
+			if(request.status===200){
+				clearTitle();
+				var str=request.responseText;
+				var data=JSON.parse('['+str.substr(0,str.length-1)+']');
+				for(var i in data){
+					create(data[i].title,i);
+					info.style.display='block';
+				}
+			}
+		}
+	}
+}
+//键盘输入事件监听
+document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+			var p=info.getElementsByTagName('p');
+			var len=p.length;
+			var flag=0;
+            if(e && e.keyCode==40){ // 按 Down
+					flag=0;
+				for(var i=0;i<len;i++){
+					if(p[i].className=='active'){
+						console.log(i);
+						p[i].className='';
+						if(i+1<len){
+							p[i+1].className='active';
+						}
+						flag=1;
+						break;
+					}
+				}
+				if(flag==0){p[0].className='active';}
+			}
+            if(e && e.keyCode==38){ // 按 Up
+					flag=0;
+				for(var i=0;i<len;i++){
+					if(p[i].className=='active'){
+						console.log(i);
+						p[i].className='';
+						if(i-1>=0){
+							p[i-1].className='active';
+						}
+						flag=1;
+						break;
+					}
+				}
+				if(flag==0){p[len-1].className='active';}
+               }            
+             if(e && e.keyCode==13){ // enter 键
+                 for(var i=0;i<len;i++){
+					if(p[i].className=='active'){
+						console.log(i);
+						message.value=p[i].innerHTML;
+						clearTitle();
+						break;
+					}
+				}
+            }
+        }
+selectTitle();
+info.onmouseover=function(){
+	var p=info.getElementsByTagName('p');
+	var len=p.length;
+	for(var i=0;i<len;i++){
+		p[i].className='';
+	}
+	event.target.className='active';
+}
+info.onmouseout=function(){
+	event.target.className='';
+}
+
+function create(title,i){
+	var p=document.createElement('p');
+	p.innerHTML=title;
+	info.appendChild(p);
+}
+function selectTitle(){
+		info.onclick=function(event){
+			message.value=event.target.innerHTML;
+			clearTitle();
+		}
+	}
+function clearTitle(){
+	var p=info.getElementsByTagName('p');
+	index=0;
+	var len=p.length;
+	for(var i=0;i<=len-1;i++){
+		info.removeChild(p[0]);
+	}
+	info.style.display='none';
+}
+</script>
+</body>
+</html>
