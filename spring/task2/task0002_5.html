@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+body{
+	width:1000px;
+	height:500px;
+}
+#leftBox,#rightBox{
+	float:left;
+	margin:20px 100px;
+	width:200px;
+	height:500px;
+	border:1px solid #000;
+	z-index:0;
+}
+#leftBox div,#rightBox div{
+	width:198px;
+	height:50px;
+	background:#f00;
+	border:1px solid #000;
+	z-index:10;
+}
+.chose{
+	opacity:0.5;
+}
+</style>
+</head>
+<body>
+<div id="leftBox">
+	<div>L1</div>
+	<div>L2</div>
+	<div>L3</div>
+	<div>L4</div>
+	<div>L5</div>
+</div>
+<div id="rightBox">
+	<div>R1</div>
+	<div>R2</div>
+	<div>R3</div>
+</div>
+<script type="text/javascript">
+window.onload=function(){
+	var leftBox=document.getElementById('leftBox');
+	var rightBox=document.getElementById('rightBox');
+	//drag(leftBox);
+	//drag(rightBox);
+	
+//function drag(objbox){
+	//var obj=objbox.getElementsByTagName("div");
+	//for(var i=0;i<obj.length;i++){
+	//(function(i){
+		document.onmousedown = function(ev){
+			ev=ev||window.event;
+			d=ev.target;
+			d.className='chose';
+			d.style.zIndex=20;
+			d.style.position = "absolute";
+			var x= ev.offsetX; 
+			var y= ev.offsetY; 
+			//console.log(x);
+			//console.log(y);
+			var left,right;
+			//console.log('len='+obj.length);
+			document.onmouseup = function(ev){
+				ev=ev||window.event;
+				d.className='';
+				d.style.zIndex=10;
+				var flag=d.parentNode.getAttribute('id');
+				if(left>470&&left<550&&(flag==='leftBox')){
+					var cNode=d.cloneNode(true);
+					cNode.style.position = "static";
+					cNode.removeAttribute("style");
+					rightBox.appendChild(cNode);
+					leftBox.removeChild(d);
+				}else if(left>70&&left<150&&(flag==='rightBox')){
+					var cNode=d.cloneNode(true);
+					cNode.style.position = "static";
+					cNode.removeAttribute("style");
+					leftBox.appendChild(cNode);
+					rightBox.removeChild(d);
+				}else{d.style.position = "static";d.removeAttribute("style");}
+				
+				this.onmousemove=null; 
+				this.onmouseup=null; 
+			}
+		
+			document.onmousemove = function(ev){
+				ev=ev||window.event;
+				//console.log(ev.clientX);
+				//console.log(i);
+				left=ev.clientX-x;
+				right=ev.clientY-y;
+				d.style.left=left+'px';
+				///console.log(left);
+				d.style.top=right+'px';
+				//console.log(right);
+			}
+		}
+		//})(i);
+	//}
+//}
+}
+</script>
+</body>
+</html>
