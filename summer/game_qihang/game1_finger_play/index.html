@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>finger_play</title>
+<style>
+*{
+	margin:0;
+	padding:0;
+}
+.wrap{
+	width:600px;
+	margin:50px auto;
+}
+#choose{
+	display:block;
+}
+#choose h1{
+	text-align:center;
+}
+.pic{
+	width:440px;
+	margin:30px auto;
+}
+.pic img{
+	width:140px;
+	height:135px;
+}
+#shitou:hover,#jiandao:hover,#bu:hover{
+	cursor:pointer;
+	transform:scale(1.1);
+}
+#answer{
+	text-align:center;
+	display:none;
+}
+#result{
+	display:inline-block;
+	font-size:24px;
+	line-height:130px;
+	vertical-align:top;
+	width:140px;
+	color:red;
+	font-weight:bold;
+}
+#btn{
+	font-size:20px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<div id="choose">
+		<h1>出拳吧，少年！</h1>
+		<div class="pic">
+			<img src="shitou.png" id="shitou" onClick="makeResult(this)" index=0 />
+			<img src="jiandao.png" id="jiandao" onClick="makeResult(this)"  index=1 />
+			<img src="bu.png" id="bu" onClick="makeResult(this)"  index=2 />
+		</div>
+	</div>
+	<div id="answer">
+		<h2>你已经连续获胜<span></span>次</h2>
+		<div class="pic">
+			<img src="" id="user"/>
+			<p id="result"></p>
+			<img src="" id="computer"/>
+		</div>
+		<button id="btn" onClick="playAgain()">再来一次</button>
+	</div>
+</div>
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
