@@ -189,9 +189,10 @@ $(document).keydown(function( event ){
 document.addEventListener('touchstart',function(event){
 	startx=event.touches[0].pageX;
 	starty=event.touches[0].pageY;
+});
+document.addEventListener('touchmove',function(event){
 	event.preventDefault();
 });
-
 document.addEventListener('touchend',function(event){
 	endx=event.changedTouches[0].pageX;
 	endy=event.changedTouches[0].pageY;
@@ -220,7 +221,6 @@ document.addEventListener('touchend',function(event){
 	}else{
 		if(deltay >0){	
 			//向下
-			event.preventDefault();
 			if( moveDown() ){
 				setTimeout(generateOneNumber(),210);
 				setTimeout(isgameover(),300);
@@ -228,7 +228,6 @@ document.addEventListener('touchend',function(event){
 			}
 		}else{
 			//向上
-			event.preventDefault();
 			if( moveUp() ){
 				setTimeout(generateOneNumber(),210);
 				setTimeout(isgameover(),300);
