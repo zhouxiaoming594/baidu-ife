@@ -219,6 +219,7 @@ document.addEventListener('touchend',function(event){
 	}else{
 		if(deltay >0){	
 			//向下
+			event.preventDefault();
 			if( moveDown() ){
 				setTimeout(generateOneNumber(),210);
 				setTimeout(isgameover(),300);
@@ -226,6 +227,7 @@ document.addEventListener('touchend',function(event){
 			}
 		}else{
 			//向上
+			event.preventDefault();
 			if( moveUp() ){
 				setTimeout(generateOneNumber(),210);
 				setTimeout(isgameover(),300);
