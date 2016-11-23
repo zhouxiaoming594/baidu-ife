@@ -1,0 +1,52 @@
+/* CSS Document */
+*{	
+	margin:0;
+	padding:0;
+}
+header{
+	margin:20 auto;
+	width:100%;
+	text-align:center;
+}
+header h1{
+	font:60px/60px "Microsoft Sans Serif";
+	font-weight:bold;
+	color:
+}
+header #newgamebutton{
+	display:block;
+	width:110px;
+	margin:10px auto;
+	font:16px/30px "Microsoft Sans Serif";
+	text-decoration:none;
+	border:1px solid #000;
+	border-radius:5px;
+	color:#fff;
+	background-color:#FFCC66;
+}
+header p{
+	font:20px/20px "Microsoft Sans Serif";
+}
+#grid-container{
+	margin:0 auto;
+	width:500px;
+	height:500px;
+	border:1px solid #000;
+	border-radius:5px;
+	background-color:#333;
+	position:relative;
+}
+.grid-cell{
+	position:absolute;
+	width:100px;
+	height:100px;
+	background-color:#ccc;
+	border-radius:5px;
+}
+.number-cell{
+	position:absolute;
+	border-radius:5px;
+	text-align:center;
+	font:"Microsoft Sans Serif";
+
+}
