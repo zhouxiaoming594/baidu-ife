@@ -189,7 +189,6 @@ $(document).keydown(function( event ){
 document.addEventListener('touchstart',function(event){
 	startx=event.touches[0].pageX;
 	starty=event.touches[0].pageY;
-	event.preventDefault();
 });
 document.addEventListener('touchmove',function(event){
 	event.preventDefault();
@@ -197,7 +196,6 @@ document.addEventListener('touchmove',function(event){
 document.addEventListener('touchend',function(event){
 	endx=event.changedTouches[0].pageX;
 	endy=event.changedTouches[0].pageY;
-	event.preventDefault();
 	var deltax=endx-startx;
 	var deltay=endy-starty;
 	if(Math.abs(deltax)<0.2*documentWidth && Math.abs(deltay)<0.2*documentWidth)
@@ -206,7 +204,6 @@ document.addEventListener('touchend',function(event){
 	if(Math.abs(deltax) >= Math.abs(deltay)){
 		if(deltax >0){	
 			//向右
-			
 			if( moveRight() ){
 				setTimeout(generateOneNumber(),210);
 				setTimeout(isgameover(),300);
@@ -214,7 +211,6 @@ document.addEventListener('touchend',function(event){
 			}
 	}else{
 		//向左
-	
 		if( moveLeft() ){
 				setTimeout(generateOneNumber(),210);
 				setTimeout(isgameover(),300);
