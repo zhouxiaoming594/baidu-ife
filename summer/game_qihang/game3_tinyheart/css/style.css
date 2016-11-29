@@ -1,0 +1,29 @@
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;
+}
+.all_bg{
+	width:800px;
+	height:600px;
+	margin:20px auto;
+	border:1px solid #eee;
+}
+
+.allcanvas{
+	position:relative;
+	
+}
+#canvas1{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:2;
+}
+#canvas2{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:1;
+}
+
