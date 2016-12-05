@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="task0003.css"/>
+</head>
+<body>
+<div class="header">GTD Tools</div>
+<div class="contain">
+	<div class="cate">
+		<ul class="cate-wrap">
+			<li><h1 id="taskAll" onClick="cateClick(this)"></h1></li>
+			<li>
+				<h1 >分类列表</h1>
+				<ul id="item-wrap">
+				</ul>
+			</li>
+		</ul>
+		<div class="createCate" onClick="create_Cate()">增加分类</div>
+	</div>
+	<div class="task">
+		<div>
+			<ul class="status">
+				<li onClick="taskStatus(this)">所有</li>
+				<li onClick="taskStatus(this)">未完成</li>
+				<li onClick="taskStatus(this)">已完成</li>
+			</ul>
+			<div class="task-wrap">
+				
+			</div>
+		</div>
+		<div class="createTask" onClick="createTask(this)">增加任务</div>
+	</div>
+	<div class="content">
+		<div class="title">
+			任务标题：
+			<span style="display:none;"></span>
+			<input id="title" style="display:block-inline;" placeholder="在此输入任务标题"/>
+			<div class="edit">
+			<i class="fa fa-check-square-o" onClick="taskcomplete()"></i>
+			<i class="fa fa-pencil-square-o" onClick="taskEdit()"></i>
+			</div>
+		</div>
+		<div class="date">
+			任务日期：
+			<span style="display:none;"></span>
+			<input id="date" style="display:block-inline;" placeholder="在此输入任务日期（格式：2016-01-01）"/>
+		</div>
+		<div class="description">
+			<span style="display:none;"></span>
+			<textarea id='description' placeholder="在此输入任务内容" style="display:block-inline;" ></textarea>
+		</div>
+		<div class="button">
+			<button class="confirm" onClick="addTask()">确定</button>
+			<button class="give-up" onClick="giveuptask()">放弃</button>
+		</div>
+		<div class="button2">
+			<button class="confirm" onClick="saveEdit()">保存</button>
+			<button class="give-up" onClick="giveuptask()">放弃</button>
+		</div>
+	</div>
+	
+</div>
+	<div class="pop">
+        <div class="pop-title">增加分类</div>
+        <div class="pop-content">
+		</div>
+    </div>
+    <div class="overlay"></div>
+<script type="text/javascript" src="util.js"></script>
+<script type="text/javascript" src="task0003.js"></script>
+</body>
+</html>
